@@ -1,12 +1,22 @@
 #Written August 2020 by Amy Liu
-#Still in progress January 11 2022 for editting code and commenting
-#Function: To automatically sort through 
-#Input files: 3 text files, chromosome_auto.txt, position_auto.txt, and snpname_auto.txt
+#Language: bash script. First create a file such as script.sh and paste this code in the file, 
+# exit the file, and run it on the command line.
+#Function: To automatically sort through SNPs with FST = 1 (SNP of interest) to search up how many flanking SNPs 
+#are around the SNP of interest, what the depth for flanking positions are, and whether if there is enough flanking 
+sequences around the SNP of interest to make it a good TaqMan assay candidate.
+#Input files: 3 text files: 
+#   1) chromosome_auto.txt: chromosome number of each SNP (eg. NC_036850.1)
+#   2) position_auto.txt: position number of each SNP (eg. 600000)
+#   3) snpname_auto.txt: identifier for your SNPs (eg. ACDV50_6, BTDV72_8)
+
 #Output: 
-#1) A counter text called snpsresults.txt that calculates how many SNPs are within 30 bp upstream and downstream of your SNP of interest
-#2) The 1000SNPs.....vcf file that contains 1000 bp total (500 upstream and 500 downstream flanking your SNP of interest) comparison against reference genome
-#3) .ldepth file which 
-#4) .log file for the whole action
+#   1) A counter text called snpsresults.txt that calculates how many SNPs are within 30 bp upstream and downstream of your SNP of interest.
+#      for example the output may look like (ACDV50_6 = 0, BTDV72_8 = 5 which means ACDV50_6 has no SNPs and 
+#      BTDV72_8 has 5 within 30 bp upstream and downstream).
+#   2) The 1000SNPs.....vcf file that contains 1000 bp total (500 upstream and 500 downstream flanking your SNP of interest) 
+#      comparison against reference genome and other sequencing statistics
+#   3) .ldepth file which shows the depth of SNPs surrounding the SNP of interest. 
+#   4) .log file which reports the command that was done.
 
 
 
