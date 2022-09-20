@@ -8,7 +8,7 @@ sequences around the SNP of interest to make it a good TaqMan assay candidate.
 #   1) chromosome_auto.txt: chromosome number of each SNP (eg. NC_036850.1)
 #   2) position_auto.txt: position number of each SNP (eg. 600000)
 #   3) snpname_auto.txt: identifier for your SNPs (eg. ACDV50_6, BTDV72_8)
-#   4) variant_results.txt: file follows the format "--variant [path to gvcf.vcf file for each sample]" for all samples of interest. For example, if you are looking to compare SNPs across 3 individuals the file should have "--variant ../../Sample1.gvcf.vcf --variant ../../Sample2.gvcf.vcf ../../Sample3.gvcf.vcf"
+#   4) variant_results.txt: file follows the format "--variant [path to gvcf.vcf file for each sample]" for all samples of interest. For example, if you are looking to compare SNPs across 3 individuals the file should have "--variant ../../Sample1.gvcf.vcf --variant ../../Sample2.gvcf.vcf ../../Sample3.gvcf.vcf". The lines in this input file are passed onto the command in the GATK program. 
 #   Note: if you are looking through 5 SNPs, there should be 5 lines total for each of these files
 
 #Output: 
