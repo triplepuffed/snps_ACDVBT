@@ -4,10 +4,11 @@
 #Function: To automatically sort through SNPs with FST = 1 (SNP of interest) to search up how many flanking SNPs 
 #are around the SNP of interest, what the depth for flanking positions are, and whether if there is enough flanking 
 sequences around the SNP of interest to make it a good TaqMan assay candidate.
-#Input files: 3 text files: 
+#Input files: 4 text files: 
 #   1) chromosome_auto.txt: chromosome number of each SNP (eg. NC_036850.1)
 #   2) position_auto.txt: position number of each SNP (eg. 600000)
 #   3) snpname_auto.txt: identifier for your SNPs (eg. ACDV50_6, BTDV72_8)
+#   4) variant_results.txt: file follows the format "--variant [path to gvcf.vcf file for each sample]" for all samples of interest. For example, if you are looking to compare SNPs across 3 individuals the file should have "--variant ../../Sample1.gvcf.vcf --variant ../../Sample2.gvcf.vcf ../../Sample3.gvcf.vcf"
 #   Note: if you are looking through 5 SNPs, there should be 5 lines total for each of these files
 
 #Output: 
@@ -45,18 +46,18 @@ java1.8 -Xms512g -Xmx512g -jar /Linux/GATK-3.8/GenomeAnalysisTK.jar \
 -l INFO $tmp \
 -allSites \
 -L $fullpos \
--o ./$snpname.181.vcf \
+-o ./$snpname.183.vcf \
 -hets 0.01 \
 --max_alternate_alleles 4 \
--log ./$snpname.181.vcf.log
+-log ./$snpname.183.vcf.log
 
 grep ${chromo_array[i]} $snpname.181.vcf > 1000SNPS_$snpname.181.vcf
 
 /Linux/bin/vcftools --vcf $snpname.181.vcf \
 --site-depth-mean \
---out $snpname.181
+--out $snpname.183
 
 awk -v pos=${position_array[i]} '{if(($5 != ".") && ($2>=(pos-30) && $2<=(pos+30)))
- { counter++;} } END {print FILENAME " = " counter >> "snpsresults.txt" }' \1000SNPS_$snpname.181.vcf
+ { counter++;} } END {print FILENAME " = " counter >> "snpsresults.txt" }' \1000SNPS_$snpname.183.vcf
 
 done
